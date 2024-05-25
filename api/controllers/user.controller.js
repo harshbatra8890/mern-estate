@@ -34,6 +34,23 @@ export const updateUser = async (req,res,next) => {
   } catch (error) {
     next(error);
   }
-
-
 };
+
+//delete user
+export const deleteUser = async (req, res, next) => {
+    // Checking if the user is authorized to delete the account
+    if (req.user.id !== req.params.id) {
+      return next(errorHandler(401, 'You can delete only your account'));
+    }
+  
+    try {
+      // Finding and deleting the user by ID
+      const user = await User.findByIdAndDelete(req.params.id);
+      if (!user) {
+        return next(errorHandler(404, 'User not found'));
+      }
+      res.status(200).json('User has been deleted...');
+    } catch (error) {
+      next(error);
+    }
+  };

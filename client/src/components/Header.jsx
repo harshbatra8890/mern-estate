@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 export default function Header() {
   const {currentUser} = useSelector(state=>state.user)
+  
   return (
     <header className='bg-slate-200 shadow-sm'>
        
@@ -27,14 +28,14 @@ export default function Header() {
 <li className='hidden sm:inline text-slate-700 hover:underline'>About</li>
 </Link>
 
-<Link to='/profile'>
+
 {currentUser ? ( 
-<img src ={currentUser.profilePicture} 
-alt='profile' className='h-7 w-7 rounded-full object-cover ' />
+  <Link to='/profile'><img src ={'https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small_2x/default-avatar-profile-icon-of-social-media-user-vector.jpg'} 
+alt='profile' className='h-7 w-7 rounded-full object-cover ' /> </Link>
 ) : (
 <li className='hidden sm:inline text-slate-700 hover:underline'>Sign in</li>
 )}
-</Link>
+
 
     
 </ul>
